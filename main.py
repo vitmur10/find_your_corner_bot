@@ -25,29 +25,21 @@ async def one(message: aiogram.types.Message):
         await message.answer("ОСь забуті місця Києва")
         for name, city, type, address in cur.execute("SELECT Name, city, type, address  FROM location WHERE type = 'Забуті місця Києва'"):
             await message.answer(f"🫧Назва:{name}\n"
-                                 f"🌆Місто:{city}\n"
-                                 f"Тип:{type}\n"
                                  f"📍Адреса:{address}")
     elif message.text == "Кафе":
         await message.answer('Ось варіанти кафе')
         for name, city, type, address in cur.execute("SELECT Name, city, type, address  FROM location WHERE type = 'Кафе'"):
             await message.answer(f"🫧Назва:{name}\n"
-                                 f"🏯Місто:{city}\n"
-                                 f"🏘️Тип:{type}\n"
                                  f"📍Адреса:{address}")
     elif message.text == 'Відпочинок на природі':
         await message.answer("Ось варіанти відпочинку на природі")
         for name, city, type, address in cur.execute("SELECT Name, city, type, address  FROM location WHERE type = 'Відпочинок на природі'"):
             await message.answer(f"🫧Назва:{name}\n"
-                                 f"🌆Місто:{city}\n"
-                                 f"🌳Тип:{type}\n"
                                  f"📍Адреса:{address}")
     elif message.text == 'Активний відпочинок':
         await message.answer("Ось варіанти активного відпочинку")
         for name, city, type, address in cur.execute("SELECT Name, city, type, address  FROM location WHERE type = 'Активний відпочинок'"):
             await message.answer(f"🫧Назва:{name}\n"
-                                 f"🏯Місто:{city}\n"
-                                 f"🎡Тип:{type}\n"
                                  f"📍Адреса:{address}")
 
 
