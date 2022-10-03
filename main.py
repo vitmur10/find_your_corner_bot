@@ -93,6 +93,26 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
 
 @dp.message_handler(content_types=['text'])
 async def one(message: aiogram.types.Message):
+
+    a = ['Відпочинь', 'Все буде добре']
+    b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
+    c = ['У тебе все вийде', 'Все буде добре']
+    characters = {
+        'z': 'Вийди отсюда розбійник🧏🧏🧏',
+        'v': 'Пиздуйте нахуй отсюда йобаниє підараси👨‍🦲👨‍🦲👨‍🦲',
+        'vz': 'Пиздець російській федерації⚰️⚰️⚰️',
+        'Я втомився': a[random.randrange(0, len(a))],
+        'Мені сумно': b[random.randrange(0, len(b))],
+        'Я більше не можу': c[random.randrange(0, len(c))],
+        'Я втомилася': a[random.randrange(0, len(a))]
+    }
+    for key in characters:
+        if key == message.text:
+            await message.answer(
+                characters[key])
+        elif set(key) == set(message.text.lower()):
+            await message.answer(
+                characters[key])
     if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
         for name, city, type, address, fishnet, about, photo in cur.execute(
@@ -152,28 +172,8 @@ async def one(message: aiogram.types.Message):
                                  f"{fishnet}")
 
 
-@dp.message_handler(content_types=['text'])
-async def filter_messages(message: aiogram.types.Message):
 
-    a = ['Відпочинь', 'Все буде добре']
-    b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
-    c = ['У тебе все вийде', 'Все буде добре']
-    characters = {
-        'z': 'Вийди отсюда розбійник🧏🧏🧏',
-        'v': 'Пиздуйте нахуй отсюда йобаниє підараси👨‍🦲👨‍🦲👨‍🦲',
-        'vz': 'Пиздець російській федерації⚰️⚰️⚰️',
-        'Я втомився': a[random.randrange(0, len(a))],
-        'Мені сумно': b[random.randrange(0, len(b))],
-        'Я більше не можу': c[random.randrange(0, len(c))],
-        'Я втомилася': a[random.randrange(0, len(a))]
-    }
-    for key in characters:
-        if key == message.text:
-            await message.answer(
-                characters[key])
-        elif set(key) == set(message.text.lower()):
-            await message.answer(
-                characters[key])
+
 
 if __name__ == '__main__':
     aiogram.executor.start_polling(dp, skip_updates=True)
