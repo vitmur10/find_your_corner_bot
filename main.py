@@ -151,8 +151,9 @@ async def one(message: aiogram.types.Message):
                                  f"📍Адреса:{address}\n"
                                  f"{fishnet}")
 
+
 @dp.message_handler(content_types=['text'])
-async def filter_messages(message: types.Message):
+async def filter_messages(message: aiogram.types.Message):
 
     a = ['Відпочинь', 'Все буде добре']
     b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
