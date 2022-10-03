@@ -115,60 +115,73 @@ async def one(message: aiogram.types.Message):
                 characters[key])
     if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
-        for name, city, type, address, fishnet, about, photo in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo  FROM location WHERE type = 'Забуті місця Києва'"):
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'"):
             """            await message.answer(f"🫧Назва:{name}\n"
                                      f"{about}\n"
                                      f"📍Адреса:{address}\n"
                                      f"{fishnet}")"""
             await bot.send_photo(message.chat.id,
                                  photo,
-                                 f"🫧Назва:{name}\n"
+                                 f"🫧{name}\n"
                                  f"{about}\n"
-                                 f"📍Адреса:{address}\n"
+                                 f"📍Адреса - {address}\n"
+                                 f"Станція метро - {metro}\n"
+                                 f"Години роботи {time}\n"
+                                 f"Вартість - {cost}"
                                  f"{fishnet}")
 
     elif message.text == "Кафе":
         await message.answer('Ось варіанти кафе')
-        for name, city, type, address, fishnet, about, photo in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo  FROM location WHERE type = 'Кафе'"):
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Кафе'"):
             """            await message.answer(f"🫧Назва:{name}\n"
                                  f"{about}\n"
                                  f"📍Адреса:{address}\n"
                                  f"{fishnet}")"""
-            await bot.send_photo(message.chat.id, photo,
-                                 f"🫧Назва:{name}\n"
+            await bot.send_photo(message.chat.id,
+                                 photo,
+                                 f"🫧{name}\n"
                                  f"{about}\n"
-                                 f"📍Адреса:{address}\n"
+                                 f"📍Адреса - {address}\n"
+                                 f"Станція метро - {metro}\n"
+                                 f"Години роботи {time}\n"
+                                 f"Вартість - {cost}"
                                  f"{fishnet}")
 
     elif message.text == 'Відпочинок на природі':
         await message.answer("Ось варіанти відпочинку на природі")
-        for name, city, type, address, fishnet, about, photo in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo  FROM location WHERE type = 'Відпочинок на природі'"):
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Відпочинок на природі'"):
             """            await message.answer(f"🫧Назва:{name}\n"
                                      f"{about}\n"
                                      f"📍Адреса:{address}\n"
                                      f"{fishnet}")"""
             await bot.send_photo(message.chat.id,
                                  photo,
-                                 f"🫧Назва:{name}\n"
+                                 f"🫧{name}\n"
                                  f"{about}\n"
-                                 f"📍Адреса:{address}\n"
+                                 f"📍Адреса - {address}\n"
+                                 f"Станція метро - {metro}\n"
+                                 f"Години роботи {time}\n"
+                                 f"Вартість - {cost}"
                                  f"{fishnet}")
     elif message.text == 'Активний відпочинок':
         await message.answer("Ось варіанти активного відпочинку")
-        for name, city, type, address, fishnet, about, photo in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo  FROM location WHERE type = 'Активний відпочинок'"):
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost    FROM location WHERE type = 'Активний відпочинок'"):
             """ await message.answer(f"🫧Назва:{name}\n"
                                      f"{about}\n"
                                      f"📍Адреса:{address}\n"
                                      f"{fishnet}")"""
             await bot.send_photo(message.chat.id,
                                  photo,
-                                 f"🫧Назва:{name}\n"
+                                 f"🫧{name}\n"
                                  f"{about}\n"
-                                 f"📍Адреса:{address}\n"
+                                 f"📍Адреса - {address}\n"
+                                 f"Станція метро - {metro}\n"
+                                 f"Години роботи {time}\n"
+                                 f"Вартість - {cost}"
                                  f"{fishnet}")
 
 
