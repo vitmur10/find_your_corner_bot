@@ -169,10 +169,10 @@ async def filter_messages(message: aiogram.types.Message):
     }
     for key in characters:
         if key == message.text:
-            await message.reply(
+            await message.answer(
                 characters[key])
         elif set(key) == set(message.text.lower()):
-            await message.reply(
+            await message.answer(
                 characters[key])
 
 if __name__ == '__main__':
