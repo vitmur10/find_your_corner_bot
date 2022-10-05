@@ -11,8 +11,14 @@ button_panoramic = aiogram.types.KeyboardButton(text='Панорамний ви�
 button_areas = aiogram.types.KeyboardButton(text='Площі')
 button_hotels = aiogram.types.KeyboardButton(text='Готелі')
 button_museums = aiogram.types.KeyboardButton(text='Музеї')
+button_next = aiogram.types.KeyboardButton(text='▶️')
+button_back = aiogram.types.KeyboardButton(text='◀️')
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu.add(button_forgotten).row(button_nature, button_active, button_museums, button_hotels, button_panoramic, button_areas, button_donat ).add(button_cafe)
+keyboard_menu.add(button_forgotten).row(button_nature, button_active).row(button_cafe, button_next)
+keyboard_menu_2 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas, button_museums).row(button_donat, button_back)
+
+
 
 rd = [button_nature, button_active]
 

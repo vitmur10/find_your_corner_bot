@@ -143,10 +143,7 @@ async def one(message: aiogram.types.Message, send=None):
     elif message.text == 'Відпочинок на природі':
         await message.answer("Ось варіанти відпочинку на природі")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Відпочинок на природі'"
-                "WHERE type = 'Парк'"
-                "WHERE type = 'Сквер'"
-                "WHERE type = 'Ботанічний сад'"):
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Відпочинок на природі'"):
                 await bot.send_photo(message.chat.id, photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -224,6 +221,11 @@ async def one(message: aiogram.types.Message, send=None):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
+    elif message.text == "▶️":
+        await message.answer('▶️', reply_markup=keybord.keyboard_menu_2)
+    elif message.text == "◀️":
+        await message.answer('◀️', reply_markup=keybord.keyboard_menu)
+
 
 
 
