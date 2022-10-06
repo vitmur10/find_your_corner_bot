@@ -17,29 +17,32 @@ con = sqlite3.connect("bd")
 cur = con.cursor()
 
 
-"""def analytics(func: callable):
+def analytics(func: callable):
     total_messages = 0
     users =set()
     total_users = 0
-"""
-"""    def analytics_wrapper(message):
-        nonlocal total_messages, total_users
-        total_messages +=1
 
-        if message.chat.id not in users:
-            users.add(message.chat.id)
-            total_users +=1
-        data = [
-            (total_users, message, total_messages)]
-        cur.executemany("INSERT INTO analytics VALUES(?, ?, ?)", data)
-        con.commit()
-        return func(message)
+    def analytics_wrapper(message):
+            nonlocal total_messages, total_users
+            total_messages +=1
 
-    return analytics_wrapper"""
+            if message.chat.id not in users:
+                users.add(message.chat.id)
+                total_users += 1
+            data = [
+                (
+                    total_users, message.text, total_messages
+                 )
+            ]
+            cur.executemany("INSERT INTO analytics VALUES(?, ?, ?)", data)
+            con.commit()
+            return func(message)
+
+    return analytics_wrapper
 
 
 @dp.message_handler(commands=['start'])
-#@analytics
+@analytics
 async def hello(message: aiogram.types.Message):
     await message.answer("     Hello everybody 👋\nТи єдиний, хто нас знайшов, але не останній🤗\n"
                          "Ти вже підняв економіку України, будучи тут🇺🇦 \n"
@@ -113,7 +116,7 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
 
 
 @dp.message_handler(content_types=['text'])
-#@analytics
+@analytics
 async def one(message: aiogram.types.Message, send=None):
 
     a = ['Відпочинь', 'Все буде добре']
