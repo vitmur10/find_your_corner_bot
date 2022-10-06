@@ -30,9 +30,9 @@ def analytics(func: callable):
             users.add(message.chat.id)
             total_users +=1
 
-        print('Messege:', message.text,
-              'Total messages', total_messages,
-              'Users', total_users)
+        return func(message)
+
+    return analytics_wrapper
 
 
 @dp.message_handler(commands=['start'])
