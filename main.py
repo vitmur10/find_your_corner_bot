@@ -4,6 +4,7 @@ import random
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
+from lorabot import LoraBot
 
 import keybord
 from Const import TOKEN
@@ -15,6 +16,18 @@ dp = aiogram.Dispatcher(bot, storage=storage)
 
 con = sqlite3.connect("bd")
 cur = con.cursor()
+lora_bot = LoraBot("findplaceuaa_bot")
+
+#для отслеживания новых пользователей
+lora_bot.user(aiogram.USER_ID)
+#для отслеживания команд, сообщений из меню и обычных сообщений
+lora_bot.message(aiogram.TEXT, aiogram.TEXT_TYPE, aiogram.USER_ID)
+#для отслеживания событий
+lora_bot.event(aiogram.EVENT, aiogram.EVENT_TYPE, aiogram.USER_ID)
+#для отслеживания отзывов о боте
+lora_bot.review(aiogram.REVIEW, aiogram.USER_ID)
+#для отслеживания оценок бота
+lora_bot.assessment(aiogram.RATING_IN_INT_FORMAT, aiogram.USER_ID)
 
 
 @dp.message_handler(commands=['start'])
@@ -88,6 +101,7 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
         f'Місто:{Location.city}\n'
         f'Адрес:{Location.address}\n'
         f'Силка:{Location.fishnet}')
+
 
 
 @dp.message_handler(content_types=['text'])
@@ -227,6 +241,14 @@ async def one(message: aiogram.types.Message, send=None):
         await message.answer('◀️', reply_markup=keybord.keyboard_menu)
     elif message.text == "Підтримати продукт":
         await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
+    elif message.text == 'Аналітика':
+        # Возвращает общую информацию о пользователях бота(только текст)
+        info = lora_bot.analyze_total(aiogram.START_PERIOD, aiogram.END_PERIOD)
+        await bot.send_message(message.chat.id, info)
+        # Возвращает информацию о ежедневных активных пользователях(график + текст)
+        photo, info = lora_bot.analyze_dau(aiogram.START_PERIOD, aiogram.END_PERIOD)
+        await bot.send_message(message.chat.id, info)
+        await bot.send_photo(message.chat.id, photo)
 
 
 
