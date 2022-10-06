@@ -29,7 +29,10 @@ def analytics(func: callable):
         if message.chat.id not in users:
             users.add(message.chat.id)
             total_users +=1
-
+        data = [
+            (total_users, message, total_messages)]
+        cur.executemany("INSERT INTO analytics VALUES(?, ?, ?)", data)
+        con.commit()
         return func(message)
 
     return analytics_wrapper
