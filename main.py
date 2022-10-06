@@ -17,7 +17,6 @@ con = sqlite3.connect("bd")
 cur = con.cursor()
 
 
-
 @dp.message_handler(commands=['start'])
 async def hello(message: aiogram.types.Message):
     await message.answer("     Hello everybody 👋\nТи єдиний, хто нас знайшов, але не останній🤗\n"
@@ -91,7 +90,6 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
         f'Силка:{Location.fishnet}')
 
 
-
 @dp.message_handler(content_types=['text'])
 async def one(message: aiogram.types.Message, send=None):
 
@@ -117,7 +115,7 @@ async def one(message: aiogram.types.Message, send=None):
     if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
         for name, city, type, address, fishnet, about, photo, metro, tim, cost in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті'"):
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'"):
                 await bot.send_photo(message.chat.id,
                                      photo,
                                      f"🫧{name}\n"
