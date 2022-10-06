@@ -117,7 +117,7 @@ async def one(message: aiogram.types.Message, send=None):
     if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
         for name, city, type, address, fishnet, about, photo, metro, tim, cost in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'"):
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця'"):
                 await bot.send_photo(message.chat.id,
                                      photo,
                                      f"🫧{name}\n"
