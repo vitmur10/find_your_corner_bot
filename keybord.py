@@ -31,3 +31,47 @@ next = aiogram.types.InlineKeyboardButton(text="Наступне", callback_data
 
 keyboard_next = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_next.add(next)
+
+
+# Метро
+
+button_red_branch = aiogram.types.KeyboardButton(text='Червона гілка')
+button_blue_branch = aiogram.types.KeyboardButton(text='Синя гілка')
+button_green_branch = aiogram.types.KeyboardButton(text='Зелена гілка')
+keyboard_metro = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard_metro.add(button_green_branch, button_blue_branch, button_red_branch)
+
+# Червона гілка
+keyboard_red_branch = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
+keyboard_red_branch.add(next)
+Station = aiogram.types.InlineKeyboardButton(text="Вокзальна", callback_data='Station')
+Theatrical = aiogram.types.InlineKeyboardButton(text="Театральна", callback_data='Theatrical')
+University = aiogram.types.InlineKeyboardButton(text="Університет", callback_data='University')
+
+# Синя гілка
+keyboard_button_blue_branch = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
+keyboard_button_blue_branch.add(next)
+
+
+# Зелена гілка
+keyboard_green_branch = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
+keyboard_green_branch.add(next)
+red_village = aiogram.types.InlineKeyboardButton(text="Червоний хутір", callback_data='Red_village')
+Boryspilska = aiogram.types.InlineKeyboardButton(text="Бориспільська", callback_data='Boryspilska')
+Vyrlitsa = aiogram.types.InlineKeyboardButton(text="Вирлиця", callback_data='Vyrlitsa')
+Kharkivska = aiogram.types.InlineKeyboardButton(text="Харківська", callback_data='Kharkivska')
+Poznyaks = aiogram.types.InlineKeyboardButton(text="Позняки", callback_data='Poznyaks')
+Slavutych = aiogram.types.InlineKeyboardButton(text="Славутич", callback_data='Slavutych')
+Vydubychi = aiogram.types.InlineKeyboardButton(text="Видубичі", callback_data='Vydubychi')
+Friendship_of_peoples = aiogram.types.InlineKeyboardButton(text="Дружба народів", callback_data='Friendship_of_peoples')
+Klovska = aiogram.types.InlineKeyboardButton(text="Кловська", callback_data='Klovska')
+Pecherska = aiogram.types.InlineKeyboardButton(text="Печерська", callback_data='Pecherska')
+Palace_of_Sports = aiogram.types.InlineKeyboardButton(text="Палац спорту", callback_data='Palace_of_Sports')
+Golden_Gate = aiogram.types.InlineKeyboardButton(text="Золоті ворота", callback_data='Golden_Gate')
+Lukyanivska = aiogram.types.InlineKeyboardButton(text="Лук'янівська", callback_data='Lukyanivska')
+dear_ones = aiogram.types.InlineKeyboardButton(text="Дорогожичі", callback_data='dear_ones')
+raw = aiogram.types.InlineKeyboardButton(text="Сирець", callback_data='raw')
+
+
+
+

@@ -117,7 +117,7 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
 
 @dp.message_handler(content_types=['text'])
 @analytics
-async def one(message: aiogram.types.Message, send=None):
+async def one(message: aiogram.types.Message):
 
     a = ['Відпочинь', 'Все буде добре']
     b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
