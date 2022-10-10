@@ -48,6 +48,7 @@ Station = aiogram.types.InlineKeyboardButton(text="Вокзальна", callback
 Theatrical = aiogram.types.InlineKeyboardButton(text="Театральна", callback_data='Theatrical')
 University = aiogram.types.InlineKeyboardButton(text="Університет", callback_data='University')
 
+
 # Синя гілка
 keyboard_button_blue_branch = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_button_blue_branch.add(next)
