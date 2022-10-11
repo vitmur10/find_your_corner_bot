@@ -1,20 +1,13 @@
 import aiogram
-import sqlite3
+import filters
 import random
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
-
 import keybord
-from Const import TOKEN
+from Const import bot, storage, dp, cur, con
 
 # Initialize bot and dispatcher
-bot = aiogram.Bot(token=TOKEN)
-storage = MemoryStorage()
-dp = aiogram.Dispatcher(bot, storage=storage)
 
-con = sqlite3.connect("bd")
-cur = con.cursor()
 
 
 def analytics(func: callable):
@@ -247,6 +240,45 @@ async def one(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
+    elif message.text == "Церкви, собори, монастирі":
+        await bot.send_message(message.chat.id, 'Ось варіанти церквів, соборів, монастирів')
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Церкви, собори, монастирі'"):
+            await bot.send_photo(message.chat.id,
+                           photo,
+                           f"🫧{name}\n"
+                           f"{about}\n"
+                           f"📍Адреса - {address}\n"
+                           f"Станція метро - {metro}\n"
+                           f"Години роботи {time}\n"
+                           f"Вартість - {cost}\n"
+                           f"{fishnet}")
+    elif message.text == "Історичні пам'ятки":
+        await bot.send_message(message.chat.id, "Ось варіанти історичних пам'яток")
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Історична памятка'"):
+            await bot.send_photo(message.chat.id,
+                           photo,
+                           f"🫧{name}\n"
+                           f"{about}\n"
+                           f"📍Адреса - {address}\n"
+                           f"Станція метро - {metro}\n"
+                           f"Години роботи {time}\n"
+                           f"Вартість - {cost}\n"
+                           f"{fishnet}")
+    elif message.text == "Інше":
+        await bot.send_message(message.chat.id, 'Ось інші локації')
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Інше'"):
+            await bot.send_photo(message.chat.id,
+                           photo,
+                           f"🫧{name}\n"
+                           f"{about}\n"
+                           f"📍Адреса - {address}\n"
+                           f"Станція метро - {metro}\n"
+                           f"Години роботи {time}\n"
+                           f"Вартість - {cost}\n"
+                           f"{fishnet}")
     elif message.text == "▶️":
         await message.answer('▶️', reply_markup=keybord.keyboard_menu_2)
     elif message.text == "◀️":
