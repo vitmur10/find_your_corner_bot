@@ -19,7 +19,7 @@ button_back = aiogram.types.KeyboardButton(text='◀️')
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard_menu.add(button_forgotten).row(button_nature, button_active).row(button_historical_monument, button_cathedrals).row(button_cafe, button_next)
 keyboard_menu_2 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas, button_museums).row(button_other).row(button_donat, button_back)
+keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas).row(button_other, button_museums).row(button_donat, button_back)
 privat = aiogram.types.InlineKeyboardButton(text="Приват24", url='https://www.privat24.ua/rd/transfer_to_card/?hash=rd%2Ftransfer_to_card%2F%7B%22from%22%3A%22%22%2C%22to%22%3A%224149499392840482%22%2C%22amt%22%3A%22100%22%2C%22ccy%22%3A%22UAH%22%7D')
 mono = aiogram.types.InlineKeyboardButton(text="MONOBANK", url='https://send.monobank.ua/5buFQWbT5t')
 
