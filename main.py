@@ -285,6 +285,8 @@ async def one(message: aiogram.types.Message):
         await message.answer('◀️', reply_markup=keybord.keyboard_menu)
     elif message.text == "Підтримати продукт":
         await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
+    elif message.text == 'Пошук по метро':
+        await message.answer('Гілки метро', reply_markup=keybord.keyboard_metro)
 
 
 
