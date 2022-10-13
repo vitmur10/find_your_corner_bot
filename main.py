@@ -584,6 +584,7 @@ async def teremka(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}")
 
 
+
 @dp.callback_query_handler(lambda c: c.data == 'Red_village')
 async def red_village(callback_query: aiogram.types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
