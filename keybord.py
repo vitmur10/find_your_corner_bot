@@ -1,6 +1,17 @@
 import aiogram
 from main import bot, dp
 
+
+
+
+# Метро
+
+button_red_branch = aiogram.types.KeyboardButton(text='Червона гілка')
+button_blue_branch = aiogram.types.KeyboardButton(text='Синя гілка')
+button_green_branch = aiogram.types.KeyboardButton(text='Зелена гілка')
+button_menu = aiogram.types.KeyboardButton(text='Меню')
+keyboard_metro = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard_metro.add(button_green_branch, button_blue_branch).add(button_menu, button_red_branch)
 #Кнопка меню
 button_forgotten = aiogram.types.KeyboardButton(text="Забуті місця Києва")
 button_cafe = aiogram.types.KeyboardButton(text="Поїсти")
@@ -18,9 +29,9 @@ button_search_metro = aiogram.types.KeyboardButton(text='Пошук по мет�
 button_next = aiogram.types.KeyboardButton(text='▶️')
 button_back = aiogram.types.KeyboardButton(text='◀️')
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu.add(button_forgotten).row(button_nature).row(button_cathedrals).row(button_historical_monument,button_active).row(button_cafe, button_next)
+keyboard_menu.add(button_forgotten).row(button_nature).row(button_cathedrals).row(button_historical_monument, button_active).row(button_cafe, button_next)
 keyboard_menu_2 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas).row(button_other, button_museums).row(button_donat, button_back)
+keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas).row(button_other, button_museums).row(button_search_metro).row(button_donat, button_back)
 privat = aiogram.types.InlineKeyboardButton(text="Приват24", url='https://www.privat24.ua/rd/transfer_to_card/?hash=rd%2Ftransfer_to_card%2F%7B%22from%22%3A%22%22%2C%22to%22%3A%224149499392840482%22%2C%22amt%22%3A%22100%22%2C%22ccy%22%3A%22UAH%22%7D')
 mono = aiogram.types.InlineKeyboardButton(text="MONOBANK", url='https://send.monobank.ua/5buFQWbT5t')
 
@@ -37,13 +48,7 @@ keyboard_next = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_next.add(next)
 
 
-# Метро
 
-button_red_branch = aiogram.types.KeyboardButton(text='Червона гілка')
-button_blue_branch = aiogram.types.KeyboardButton(text='Синя гілка')
-button_green_branch = aiogram.types.KeyboardButton(text='Зелена гілка')
-keyboard_metro = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_metro.add(button_green_branch, button_blue_branch, button_red_branch)
 
 # Червона гілка
 akademistechko = aiogram.types.InlineKeyboardButton(text="Академмістечко", callback_data='Akademistechko')
