@@ -109,8 +109,7 @@ async def fishnet(message: aiogram.types.Message, state: FSMContext):
         f'Силка:{Location.fishnet}')
 
 
-@dp.message_handler(content_types=['text'], commands=['forgotten_place', 'eat', 'nature',
-                                                      "active", 'hotels', 'areas', 'museums' 'panoramic' 'church' 'sights' 'other'])
+@dp.message_handler(content_types=['text'])
 @analytics
 async def loc(message: aiogram.types.Message):
     a = ['Відпочинь', 'Все буде добре']
@@ -132,7 +131,7 @@ async def loc(message: aiogram.types.Message):
         elif set(key) == set(message.text.lower()):
             await message.answer(
                 characters[key])
-    if message.text == 'Забуті місця Києва'""" or message.text == '/forgotten_place'""":
+    if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'"):
@@ -146,7 +145,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
 
-    elif message.text == "Поїсти"""" or message.text == '/eat'""":
+    elif message.text == "Поїсти":
         await message.answer('Ось варіанти де можна поїсти')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Кафе'"):
@@ -160,7 +159,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
 
-    elif message.text == 'Відпочинок на природі'""" or message.text == '/nature'""":
+    elif message.text == 'Відпочинок на природі':
         await message.answer("Ось варіанти відпочинку на природі")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Відпочинок на природі'"):
@@ -174,7 +173,7 @@ async def loc(message: aiogram.types.Message):
                                  f"{fishnet}")
 
 
-    elif message.text == 'Активний відпочинок'""" or message.text == '/active'""":
+    elif message.text == 'Активний відпочинок':
         await message.answer("Ось варіанти активного відпочинку")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost    FROM location WHERE type = 'Активний відпочинок' "):
@@ -187,7 +186,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}"
                                  f"{fishnet}")
-    elif message.text == "Готелі"""" or message.text == '/hotels'""":
+    elif message.text == "Готелі":
         await message.answer('Ось варіанти готелів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Готель'"):
@@ -201,7 +200,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
 
-    elif message.text == "Площі"""" or message.text == '/areas'""":
+    elif message.text == "Площі":
         await message.answer('Ось варіанти площів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Площа'"):
@@ -214,7 +213,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
-    elif message.text == "Музеї"""" or message.text == '/museums'""":
+    elif message.text == "Музеї":
         await message.answer('Ось варіанти музеїв')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Музей'"):
@@ -228,7 +227,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
 
-    elif message.text == "Панорамний вид"""" or message.text == '/panoramic'""":
+    elif message.text == "Панорамний вид":
         await message.answer('Ось варіанти місць із панорамним видом')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Панорамний вид'"):
@@ -241,7 +240,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
-    elif message.text == "Церкви, собори, монастирі"""" or message.text == '/church'""":
+    elif message.text == "Церкви, собори, монастирі":
         await bot.send_message(message.chat.id, 'Ось варіанти церквів, соборів, монастирів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Церкви, собори, монастирі'"):
@@ -254,7 +253,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
-    elif message.text == "Історичні пам'ятки" """or message.text == '/sights'""":
+    elif message.text == "Історичні пам'ятки":
         await bot.send_message(message.chat.id, "Ось варіанти історичних пам'яток")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Історична памятка'"):
@@ -267,7 +266,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}")
-    elif message.text == "Інше"""" or message.text == '/other'""":
+    elif message.text == "Інше":
         await bot.send_message(message.chat.id, 'Ось інші локації')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Інше'"):
