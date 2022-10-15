@@ -10,3 +10,4 @@ dp = aiogram.Dispatcher(bot, storage=storage)
 
 con = sqlite3.connect("bd")
 cur = con.cursor()
+
