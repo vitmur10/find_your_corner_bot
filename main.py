@@ -71,7 +71,7 @@ async def loc(message: aiogram.types.Message):
     if message.text == 'Забуті місця Києва':
         await message.answer("Ось забуті місця Києва")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'LIMIT 1 OFFSET ?", str(n.n_forgotten)):
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'LIMIT 1 OFFSET ?", [n.n_forgotten]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -86,7 +86,7 @@ async def loc(message: aiogram.types.Message):
         await message.answer('Ось варіанти де можна поїсти')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Кафе'LIMIT 1 OFFSET ?",
-                str(n.n_eit)):
+                [n.n_eit]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -101,7 +101,7 @@ async def loc(message: aiogram.types.Message):
         await message.answer("Ось варіанти відпочинку на природі")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Відпочинок на природі' LIMIT 1 OFFSET ?",
-                str(n.n_nature)):
+                [n.n_nature]):
             await bot.send_photo(message.chat.id, photo,
                                  f"🫧{name}\n"
                                  f"{about}\n"
@@ -113,7 +113,7 @@ async def loc(message: aiogram.types.Message):
     elif message.text == 'Активний відпочинок':
         await message.answer("Ось варіанти активного відпочинку")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Активний відпочинок' LIMIT 1 OFFSET ?", str(n.n_active)):
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Активний відпочинок' LIMIT 1 OFFSET ?", [n.n_active]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -130,7 +130,7 @@ async def loc(message: aiogram.types.Message):
         await message.answer('Ось варіанти готелів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Готель' LIMIT 1 OFFSET ?",
-                str(n.n_hotels)):
+                [n.n_hotels]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -145,7 +145,7 @@ async def loc(message: aiogram.types.Message):
         await message.answer('Ось варіанти площів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Площа' LIMIT 1 OFFSET ?",
-                str(n.n_areas)):
+                [n.n_areas]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -159,7 +159,7 @@ async def loc(message: aiogram.types.Message):
         await message.answer('Ось варіанти музеїв')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Музей' LIMIT 1 OFFSET ?",
-                str(n.n_museums)):
+                [n.n_museums]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -175,7 +175,7 @@ async def loc(message: aiogram.types.Message):
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
 
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Панорамний вид' LIMIT 1 OFFSET ?",
-                str(n.n_panoramic)):
+                [n.n_panoramic]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -189,7 +189,7 @@ async def loc(message: aiogram.types.Message):
         await bot.send_message(message.chat.id, 'Ось варіанти церквів, соборів, монастирів')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Церкви, собори, монастирі' LIMIT 1 OFFSET ?",
-                str(n.n_cathedrals)):
+                [n.n_cathedrals]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -203,7 +203,7 @@ async def loc(message: aiogram.types.Message):
         await bot.send_message(message.chat.id, "Ось варіанти історичних пам'яток")
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Історична памятка' LIMIT 1 OFFSET ?",
-                str(n.n_historical_monument)):
+                [n.n_historical_monument]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -217,7 +217,7 @@ async def loc(message: aiogram.types.Message):
         await bot.send_message(message.chat.id, 'Ось інші локації')
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Інше' LIMIT 1 OFFSET ?",
-            str(n.n_other)):
+            [n.n_other]):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
