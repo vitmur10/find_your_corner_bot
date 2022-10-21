@@ -3,7 +3,7 @@ import aiogram, keybord
 
 
 
-n_active = 0
+n_active = 1
 active_list = []
 
 
@@ -29,10 +29,10 @@ async def active(callback_query: aiogram.types.CallbackQuery):
     if len(active_list) < n_active-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_active = 0
+        n_active = 1
 
 
-n_forgotten = 0
+n_forgotten = 1
 forgotten_list = []
 
 
@@ -59,10 +59,10 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
     if len(forgotten_list) < n_forgotten-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_forgotten = 0
+        n_forgotten = 1
 
 
-n_eit = 0
+n_eit = 1
 eit_list= []
 
 
@@ -88,10 +88,10 @@ async def cafe(callback_query: aiogram.types.CallbackQuery):
     if len(eit_list) < n_eit-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_eit = 0
+        n_eit = 1
 
 
-n_nature = 0
+n_nature = 1
 nature_list = []
 
 
@@ -117,10 +117,10 @@ async def nature(callback_query: aiogram.types.CallbackQuery):
     if len(nature_list) < n_nature-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_nature = 0
+        n_nature = 1
 
 
-n_panoramic = 0
+n_panoramic = 1
 panoramic_list = []
 
 
@@ -146,8 +146,8 @@ async def panoramic(callback_query: aiogram.types.CallbackQuery):
     if len(panoramic_list) < n_panoramic-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_panoramic = 0
-n_areas = 0
+        n_panoramic = 1
+n_areas = 1
 areas_list = []
 
 
@@ -173,8 +173,8 @@ async def areas(callback_query: aiogram.types.CallbackQuery):
     if len(areas_list) < n_areas-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_areas = 0
-n_hotels = 0
+        n_areas = 1
+n_hotels = 1
 hotels_list = []
 
 
@@ -200,9 +200,9 @@ async def hotels(callback_query: aiogram.types.CallbackQuery):
     if len(hotels_list) < n_hotels-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_hotels = 0
+        n_hotels = 1
 
-n_museums = 0
+n_museums = 1
 museums_list = []
 
 
@@ -228,9 +228,9 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
     if len(museums_list) < n_museums-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_museums = 0
+        n_museums = 1
 
-n_cathedrals = 0
+n_cathedrals = 1
 cathedrals_list = []
 
 
@@ -256,9 +256,9 @@ async def cathedrals(callback_query: aiogram.types.CallbackQuery):
     if len(cathedrals_list) < n_cathedrals-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_cathedrals = 0
+        n_cathedrals = 1
 
-n_historical_monument = 0
+n_historical_monument = 1
 historical_monument_list =[]
 
 
@@ -284,9 +284,9 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
     if len(historical_monument_list) < n_historical_monument-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_historical_monument = 0
+        n_historical_monument = 1
 
-n_other = 0
+n_other = 1
 other_list = []
 
 
@@ -312,4 +312,4 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
     if len(other_list) < n_other-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_other = 0
+        n_other = 1
