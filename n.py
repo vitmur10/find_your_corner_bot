@@ -17,7 +17,6 @@ async def active(callback_query: aiogram.types.CallbackQuery):
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Активний відпочинок' LIMIT 1 OFFSET ?",
             [n_active]):
         active_list.append(name)
-
         await bot.send_photo(callback_query.from_user.id,
                              photo,
                              f"🫧{name}\n"
@@ -25,9 +24,12 @@ async def active(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_active)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_active)
     if len(active_list) < n_active-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
+        n_active = 1
 
 
 n_forgotten = 1
@@ -52,9 +54,11 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_forgotten)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_forgotten)
     if len(forgotten_list) < n_forgotten-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_forgotten = 1
 
 
@@ -79,9 +83,11 @@ async def cafe(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_forgotten)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_forgotten)
     if len(eit_list) < n_eit-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_eit = 1
 
 
@@ -106,9 +112,11 @@ async def nature(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_nature)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_nature)
     if len(nature_list) < n_nature-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_nature = 1
 
 
@@ -133,9 +141,11 @@ async def panoramic(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_panoramic)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_panoramic)
     if len(panoramic_list) < n_panoramic-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_panoramic = 1
 n_areas = 1
 areas_list = []
@@ -158,9 +168,11 @@ async def areas(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_areas)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_areas)
     if len(areas_list) < n_areas-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_areas = 1
 n_hotels = 1
 hotels_list = []
@@ -183,9 +195,11 @@ async def hotels(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_hotels)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_hotels)
     if len(hotels_list) < n_hotels-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_hotels = 1
 
 n_museums = 1
@@ -209,9 +223,11 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_museums)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_museums)
     if len(museums_list) < n_museums-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_museums = 1
 
 n_cathedrals = 1
@@ -235,9 +251,11 @@ async def cathedrals(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_cathedrals)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_cathedrals)
     if len(cathedrals_list) < n_cathedrals-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_cathedrals = 1
 
 n_historical_monument = 1
@@ -261,9 +279,11 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_historical_monument)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_historical_monument)
     if len(historical_monument_list) < n_historical_monument-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_historical_monument = 1
 
 n_other = 1
@@ -287,7 +307,9 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
                              f"📍Адреса - {address}\n"
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n", reply_markup=keybord.keyboard_inline_other)
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}", reply_markup=keybord.keyboard_inline_other)
     if len(other_list) < n_forgotten-1:
-        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація")
+        await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
+                                                            "Ми процюємо над тим щоб їх було  більше")
         n_other = 1
