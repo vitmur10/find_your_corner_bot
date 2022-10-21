@@ -80,13 +80,12 @@ async def loc(message: aiogram.types.Message):
         await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'forgotten_place')
-async def forgotten_place(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,"Ось забуті місця Києва")
+@dp.message_handler(commands=['forgotten_place'])
+async def forgotten_place(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,"Ось забуті місця Києва")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'LIMIT 1 OFFSET ?", [n.n_forgotten]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -97,14 +96,13 @@ async def forgotten_place(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_forgotten)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'eat')
-async def eat(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,'Ось варіанти де можна поїсти')
+@dp.message_handler(commands=['eat'])
+async def eat(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,'Ось варіанти де можна поїсти')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Кафе'LIMIT 1 OFFSET ?",
             [n.n_eit]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -115,14 +113,13 @@ async def eat(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_cafe)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'nature')
-async def nature(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,"Ось варіанти відпочинку на природі")
+@dp.message_handler(commands=['nature'])
+async def nature(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,"Ось варіанти відпочинку на природі")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Відпочинок на природі' LIMIT 1 OFFSET ?",
             [n.n_nature]):
-        await bot.send_photo(callback_query.from_user.id, photo,
+        await bot.send_photo(message.chat.id, photo,
                              f"🫧{name}\n"
                              f"{about}\n"
                              f"📍Адреса - {address}\n"
@@ -132,13 +129,12 @@ async def nature(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_nature)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'active')
-async def active(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,"Ось варіанти активного відпочинку")
+@dp.message_handler(commands=['active'])
+async def active(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,"Ось варіанти активного відпочинку")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Активний відпочинок' LIMIT 1 OFFSET ?", [n.n_active]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -149,14 +145,13 @@ async def active(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_active)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'hotels')
-async def hotels(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,'Ось варіанти готелів')
+@dp.message_handler(commands=['hotels'])
+async def hotels(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,'Ось варіанти готелів')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Готель' LIMIT 1 OFFSET ?",
             [n.n_hotels]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -167,14 +162,13 @@ async def hotels(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_hotels)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'areas')
-async def areas(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,'Ось варіанти площів')
+@dp.message_handler(commands=['areas'])
+async def areas(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,'Ось варіанти площів')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Площа' LIMIT 1 OFFSET ?",
             [n.n_areas]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -185,14 +179,13 @@ async def areas(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_areas)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'museums')
-async def museums(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,'Ось варіанти музеїв')
+@dp.message_handler(commands=['museums'])
+async def museums(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,'Ось варіанти музеїв')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Музей' LIMIT 1 OFFSET ?",
             [n.n_museums]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -203,14 +196,13 @@ async def museums(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_museums)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'panoramic')
-async def panoramic(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id,'Ось варіанти місць із панорамним видом')
+@dp.message_handler(commands=['panoramic'])
+async def panoramic(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id,'Ось варіанти місць із панорамним видом')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Панорамний вид' LIMIT 1 OFFSET ?",
             [n.n_panoramic]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -221,14 +213,13 @@ async def panoramic(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_panoramic)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'church')
-async def church(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id, 'Ось варіанти церквів, соборів, монастирів')
+@dp.message_handler(commands=['church'])
+async def church(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id, 'Ось варіанти церквів, соборів, монастирів')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Церкви, собори, монастирі' LIMIT 1 OFFSET ?",
             [n.n_cathedrals]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -239,14 +230,13 @@ async def church(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_cathedrals)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'sights')
-async def sights(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id, "Ось варіанти історичних пам'яток")
+@dp.message_handler(commands=['sights'])
+async def sights(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id, "Ось варіанти історичних пам'яток")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
             "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Історична памятка' LIMIT 1 OFFSET ?",
             [n.n_historical_monument]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
@@ -257,14 +247,13 @@ async def sights(callback_query: aiogram.types.CallbackQuery):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_historical_monument)
 
 
-@dp.callback_query_handler(lambda c: c.data == 'other')
-async def other(callback_query: aiogram.types.CallbackQuery):
-    await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id, 'Ось інші локації')
+@dp.message_handler(commands=['other'])
+async def other(message: aiogram.types.Message):
+    await bot.send_message(message.chat.id, 'Ось інші локації')
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
         "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Інше' LIMIT 1 OFFSET ?",
         [n.n_other]):
-        await bot.send_photo(callback_query.from_user.id,
+        await bot.send_photo(message.chat.id,
                              photo,
                              f"🫧{name}\n"
                              f"{about}\n"
