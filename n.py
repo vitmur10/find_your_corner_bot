@@ -309,7 +309,7 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
                              f"Години роботи {time}\n"
                              f"Вартість - {cost}\n"
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_other)
-    if len(other_list) < n_forgotten-1:
+    if len(other_list) < n_other-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
         n_other = 1
