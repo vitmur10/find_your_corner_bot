@@ -27,14 +27,17 @@ button_historical_monument = aiogram.types.KeyboardButton(text="Історичн
 button_other = aiogram.types.KeyboardButton(text='Інше')
 button_search_metro = aiogram.types.KeyboardButton(text='Пошук по метро')
 button_next = aiogram.types.KeyboardButton(text='▶️')
+button_next1 = aiogram.types.KeyboardButton(text='🔜')
 button_back = aiogram.types.KeyboardButton(text='◀️')
+button_back1 = aiogram.types.KeyboardButton(text='🔙')
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu.add(button_forgotten).row(button_nature).row(button_cathedrals).row(button_historical_monument, button_active).row(button_cafe, button_next)
+keyboard_menu.add(button_forgotten).row(button_nature).row(button_cathedrals).row(button_cafe, button_next)
 keyboard_menu_2 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu_2.add(button_panoramic).row(button_hotels, button_areas).row(button_other, button_museums).row(button_search_metro).row(button_donat, button_back)
+keyboard_menu_2.row(button_museums,button_panoramic).row(button_hotels, button_areas).row(button_back, button_next1)
 privat = aiogram.types.InlineKeyboardButton(text="Приват24", url='https://www.privat24.ua/rd/transfer_to_card/?hash=rd%2Ftransfer_to_card%2F%7B%22from%22%3A%22%22%2C%22to%22%3A%224149499392840482%22%2C%22amt%22%3A%22100%22%2C%22ccy%22%3A%22UAH%22%7D')
 mono = aiogram.types.InlineKeyboardButton(text="MONOBANK", url='https://send.monobank.ua/5buFQWbT5t')
-
+keyboard_menu_3 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard_menu_3.row(button_historical_monument, button_active).row(button_search_metro,button_other).row(button_donat, button_back1)
 keyboard_donat = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_donat.add(privat, mono)
 
@@ -42,10 +45,7 @@ keyboard_donat.add(privat, mono)
 
 rd = [button_nature, button_active]
 
-next = aiogram.types.InlineKeyboardButton(text="Наступне", callback_data='Next')
 
-keyboard_next = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
-keyboard_next.add(next)
 
 
 
@@ -137,5 +137,25 @@ keyboard_green_branch2.add(friendship_of_peoples).row(klovska).row(pecherska).ro
     lukyanivska).row(dear_ones).row(raw).row(button_back_green)
 
 
-
-
+button_inline_forgotten = aiogram.types.InlineKeyboardButton(callback_data='forgotten', text="Далі")
+keyboard_inline_forgotten = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_forgotten)
+button_inline_cafe = aiogram.types.InlineKeyboardButton(callback_data='cafe', text="Далі")
+keyboard_inline_cafe = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_cafe)
+button_inline_nature = aiogram.types.InlineKeyboardButton(callback_data='nature', text='Далі')
+keyboard_inline_nature = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_nature)
+button_inline_active = aiogram.types.InlineKeyboardButton(callback_data='active', text='Далі')
+keyboard_inline_active = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_active)
+button_inline_panoramic = aiogram.types.InlineKeyboardButton(callback_data='panoramic', text='Далі')
+keyboard_inline_panoramic = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_panoramic)
+button_inline_areas = aiogram.types.InlineKeyboardButton(callback_data='areas', text='Далі')
+keyboard_inline_areas = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_areas)
+button_inline_hotels = aiogram.types.InlineKeyboardButton(callback_data='hotels', text='Далі')
+keyboard_inline_hotels = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_hotels)
+button_inline_museums = aiogram.types.InlineKeyboardButton(callback_data='museums', text='Далі')
+keyboard_inline_museums = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_museums)
+button_inline_cathedrals = aiogram.types.InlineKeyboardButton(callback_data='cathedrals', text='Далі')
+keyboard_inline_cathedrals = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_cathedrals)
+button_inline_historical_monument = aiogram.types.InlineKeyboardButton(callback_data='historical_monument', text="Далі")
+keyboard_inline_historical_monument = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_historical_monument)
+button_inline_other = aiogram.types.InlineKeyboardButton(callback_data='other', text='Далі')
+keyboard_inline_other = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_other)
