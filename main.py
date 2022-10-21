@@ -178,7 +178,6 @@ async def areas(message: aiogram.types.Message):
                              f"Вартість - {cost}\n"
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_areas)
 
-
 @dp.message_handler(commands=['museums'])
 async def museums(message: aiogram.types.Message):
     await bot.send_message(message.chat.id,'Ось варіанти музеїв')
