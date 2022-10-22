@@ -43,44 +43,7 @@ async def hello(message: aiogram.types.Message):
                          "Тоді обирай свій куточок👇")
 
 
-
-
-@dp.message_handler(content_types=['text'])
-@analytics
-async def loc(message: aiogram.types.Message):
-    a = ['Відпочинь', 'Все буде добре']
-    b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
-    c = ['У тебе все вийде', 'Все буде добре']
-    characters = {
-        'z': 'Вийди отсюда розбійник🧏🧏🧏',
-        'v': 'Пиздуйте нахуй отсюда йобаниє підараси👨‍🦲👨‍🦲👨‍🦲',
-        'vz': 'Пиздець російській федерації⚰️⚰️⚰️',
-        'Я втомився': a[random.randrange(0, len(a))],
-        'Мені сумно': b[random.randrange(0, len(b))],
-        'Я більше не можу': c[random.randrange(0, len(c))],
-        'Я втомилася': a[random.randrange(0, len(a))]
-    }
-    for key in characters:
-        if key == message.text:
-            await message.answer(
-                characters[key])
-        elif set(key) == set(message.text.lower()):
-            await message.answer(
-                characters[key])
-
-    if message.text == "Підтримати продукт":
-        await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
-    elif message.text == 'Пошук по метро':
-        await message.answer('Гілки метро', reply_markup=keybord.keyboard_metro)
-    elif message.text == 'Червона гілка':
-        await message.answer('Червона гілка', reply_markup=keybord.keyboard_red_branch1)
-    elif message.text == 'Синя гілка':
-        await message.answer('Синя гілка', reply_markup=keybord.keyboard_blue_branch1)
-    elif message.text == 'Зелена гілка':
-        await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
-
-
-@dp.message_handler(commands=['forgotten_place'])
+@dp.message_handler(commands=['forgotten_place'], commands_prefix='/')
 async def forgotten_place(message: aiogram.types.Message):
     await message.answer("Ось забуті місця Києва")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
@@ -113,7 +76,7 @@ async def eat(message: aiogram.types.Message):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_cafe)
 
 
-@dp.message_handler(commands=['nature'])
+@dp.message_handler(commands=['nature'], commands_prefix='/')
 async def nature(message: aiogram.types.Message):
     await message.answer("Ось варіанти відпочинку на природі")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
@@ -177,6 +140,7 @@ async def areas(message: aiogram.types.Message):
                              f"Години роботи {time}\n"
                              f"Вартість - {cost}\n"
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_areas)
+
 
 @dp.message_handler(commands=['museums'])
 async def museums(message: aiogram.types.Message):
@@ -261,6 +225,45 @@ async def other(message: aiogram.types.Message):
                              f"Години роботи {time}\n"
                              f"Вартість - {cost}\n"
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_other)
+
+
+@dp.message_handler(content_types=['text'])
+@analytics
+async def loc(message: aiogram.types.Message):
+    a = ['Відпочинь', 'Все буде добре']
+    b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
+    c = ['У тебе все вийде', 'Все буде добре']
+    characters = {
+        'z': 'Вийди отсюда розбійник🧏🧏🧏',
+        'v': 'Пиздуйте нахуй отсюда йобаниє підараси👨‍🦲👨‍🦲👨‍🦲',
+        'vz': 'Пиздець російській федерації⚰️⚰️⚰️',
+        'Я втомився': a[random.randrange(0, len(a))],
+        'Мені сумно': b[random.randrange(0, len(b))],
+        'Я більше не можу': c[random.randrange(0, len(c))],
+        'Я втомилася': a[random.randrange(0, len(a))]
+    }
+    for key in characters:
+        if key == message.text:
+            await message.answer(
+                characters[key])
+        elif set(key) == set(message.text.lower()):
+            await message.answer(
+                characters[key])
+
+    if message.text == "Підтримати продукт":
+        await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
+    elif message.text == 'Пошук по метро':
+        await message.answer('Гілки метро', reply_markup=keybord.keyboard_metro)
+    elif message.text == 'Червона гілка':
+        await message.answer('Червона гілка', reply_markup=keybord.keyboard_red_branch1)
+    elif message.text == 'Синя гілка':
+        await message.answer('Синя гілка', reply_markup=keybord.keyboard_blue_branch1)
+    elif message.text == 'Зелена гілка':
+        await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
+
+
+
+
 
 
 @dp.callback_query_handler(lambda c: c.data == 'Independence_Square')
