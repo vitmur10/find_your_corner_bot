@@ -10,9 +10,8 @@ import button
 button_red_branch = aiogram.types.KeyboardButton(text='Червона гілка')
 button_blue_branch = aiogram.types.KeyboardButton(text='Синя гілка')
 button_green_branch = aiogram.types.KeyboardButton(text='Зелена гілка')
-button_menu = aiogram.types.KeyboardButton(text='Меню')
 keyboard_metro = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_metro.add(button_green_branch, button_blue_branch).add(button_menu, button_red_branch)
+keyboard_metro.add(button_green_branch).add(button_blue_branch).add(button_red_branch)
 
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard_menu.add(button.button_forgotten).row(button.button_nature).row(button.button_cathedrals).row(button.button_cafe, button.button_next)

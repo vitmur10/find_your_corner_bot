@@ -3,7 +3,7 @@ import aiogram, keybord
 
 
 
-n_active = 1
+n_active = 0
 active_list = []
 
 
@@ -29,10 +29,10 @@ async def active(callback_query: aiogram.types.CallbackQuery):
     if len(active_list) < n_active-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_active = 1
+        n_active = 0
 
 
-n_forgotten = 1
+n_forgotten = 0
 forgotten_list = []
 
 
@@ -59,10 +59,10 @@ async def forgotten(callback_query: aiogram.types.CallbackQuery):
     if len(forgotten_list) < n_forgotten-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_forgotten = 1
+        n_forgotten = 0
 
 
-n_eit = 1
+n_eit = 0
 eit_list= []
 
 
@@ -88,7 +88,7 @@ async def cafe(callback_query: aiogram.types.CallbackQuery):
     if len(eit_list) < n_eit-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
-        n_eit = 1
+        n_eit = 0
 
 
 n_nature = 1

@@ -43,7 +43,7 @@ async def hello(message: aiogram.types.Message):
                          "Тоді обирай свій куточок👇")
 
 
-@dp.message_handler(commands=['forgotten_place'], commands_prefix='/')
+@dp.message_handler(commands=['forgotten_place'])
 async def forgotten_place(message: aiogram.types.Message):
     await message.answer("Ось забуті місця Києва")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
