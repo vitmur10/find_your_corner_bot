@@ -227,6 +227,16 @@ async def other(message: aiogram.types.Message):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_other)
 
 
+@dp.message_handler(commands=['Support_the_product'])
+async def other(message: aiogram.types.Message):
+    await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
+
+
+@dp.message_handler(commands=['Search_by_subway'])
+async def other(message: aiogram.types.Message):
+    await message.answer('Гілки метро', reply_markup=keybord.keyboard_metro)
+
+
 @dp.message_handler(content_types=['text'])
 @analytics
 async def loc(message: aiogram.types.Message):
@@ -250,20 +260,12 @@ async def loc(message: aiogram.types.Message):
             await message.answer(
                 characters[key])
 
-    if message.text == "Підтримати продукт":
-        await message.answer('Реквізити👇', reply_markup=keybord.keyboard_donat)
-    elif message.text == 'Пошук по метро':
-        await message.answer('Гілки метро', reply_markup=keybord.keyboard_metro)
-    elif message.text == 'Червона гілка':
+    if message.text == 'Червона гілка':
         await message.answer('Червона гілка', reply_markup=keybord.keyboard_red_branch1)
     elif message.text == 'Синя гілка':
         await message.answer('Синя гілка', reply_markup=keybord.keyboard_blue_branch1)
     elif message.text == 'Зелена гілка':
         await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
-
-
-
-
 
 
 @dp.callback_query_handler(lambda c: c.data == 'Independence_Square')
