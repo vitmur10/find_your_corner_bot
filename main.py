@@ -76,7 +76,7 @@ async def eat(message: aiogram.types.Message):
                              f"{fishnet}", reply_markup=keybord.keyboard_inline_cafe)
 
 
-@dp.message_handler(commands=['nature'], commands_prefix='/')
+@dp.message_handler(commands=['nature'])
 async def nature(message: aiogram.types.Message):
     await message.answer("Ось варіанти відпочинку на природі")
     for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
