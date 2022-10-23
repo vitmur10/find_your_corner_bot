@@ -86,7 +86,7 @@ async def cafe(callback_query: aiogram.types.CallbackQuery):
                              f"Станція метро - {metro}\n"
                              f"Години роботи {time}\n"
                              f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_forgotten)
+                             f"{fishnet}", reply_markup=keybord.button_inline_cafe)
     if len(eit_list) < n_eit-1:
         await bot.send_message(callback_query.from_user.id, "На даний момент це остання локація\n"
                                                             "Ми процюємо над тим щоб їх було  більше")
