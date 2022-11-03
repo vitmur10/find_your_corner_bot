@@ -24,6 +24,8 @@ keyboard_menu_3.row(button.button_historical_monument, button.button_active).row
 keyboard_donat = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_donat.add(privat, mono)
 
+discussion = aiogram.types.InlineKeyboardButton(text="Чат", url='https://t.me/+gSVgkrJJQaw2MDgy')
+keyboard_discussion = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(discussion)
 
 
 rd = [button.button_nature, button.button_active]
