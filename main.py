@@ -1,37 +1,12 @@
-import random
+import sqlite3
 import aiogram
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters.state import StatesGroup, State
-
-import Const
-import keybord, n, metro
-from Const import bot, dp, cur, con
+import keybord
+import n
+from Const import bot, dp, cur, region_list, characters
+from analytics import analytics
 
 # Initialize bot and dispatcher
 
-
-def analytics(func: callable):
-    total_messages = 0
-    users = set()
-    total_users = 0
-
-    def analytics_wrapper(message):
-        nonlocal total_messages, total_users
-        total_messages += 1
-
-        if message.chat.id not in users:
-            users.add(message.chat.id)
-            total_users += 1
-        data = [
-            (
-                total_users, message.text, total_messages
-            )
-        ]
-        cur.executemany("INSERT INTO analytics VALUES(?, ?, ?)", data)
-        con.commit()
-        return func(message)
-
-    return analytics_wrapper
 
 
 @dp.message_handler(commands=['start'])
@@ -41,202 +16,35 @@ async def hello(message: aiogram.types.Message):
                          "Ти вже підняв економіку України, будучи тут🇺🇦 \n"
                          "Ти готовий знайти райське місце безпеки та ще й почуватися як вдома?\n"
                          "Тоді обирай свій куточок👇")
-    """await message.answer("Який регіон?")"""
+    await message.answer("Вкажіть свою область...")
 
 
-@dp.message_handler(commands=['forgotten_place'])
+@dp.message_handler(commands=['region'])
+async def regio(message: aiogram.types.Message):
+    await message.answer(n.region)
+
+
+@dp.message_handler(
+    commands=['forgotten_place', 'eat', 'nature', 'active', 'hotels', 'areas', 'museums', 'panoramic', 'church',
+              'sights', 'other'])
 @analytics
-async def forgotten_place(message: aiogram.types.Message):
-    await message.answer("Ось забуті місця Києва")
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Забуті місця Києва'LIMIT 1 OFFSET ?", [n.n_forgotten]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_forgotten)
-
-
-@dp.message_handler(commands=['eat'])
-@analytics
-async def eat(message: aiogram.types.Message):
-    await message.answer('Ось варіанти де можна поїсти')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE type = 'Кафе'LIMIT 1 OFFSET ?",
-            [n.n_eit]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_cafe)
-
-
-@dp.message_handler(commands=['nature'])
-@analytics
-async def nature(message: aiogram.types.Message):
-    await message.answer("Ось варіанти відпочинку на природі")
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Відпочинок на природі' LIMIT 1 OFFSET ?",
-            [n.n_nature]):
-        await bot.send_photo(message.chat.id, photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_nature)
-
-
-@dp.message_handler(commands=['active'])
-@analytics
-async def active(message: aiogram.types.Message):
-    await message.answer("Ось варіанти активного відпочинку")
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Активний відпочинок' LIMIT 1 OFFSET ?", [n.n_active]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_active)
-
-
-@dp.message_handler(commands=['hotels'])
-@analytics
-async def hotels(message: aiogram.types.Message):
-    await message.answer('Ось варіанти готелів')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Готель' LIMIT 1 OFFSET ?",
-            [n.n_hotels]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_hotels)
-
-
-@dp.message_handler(commands=['areas'])
-@analytics
-async def areas(message: aiogram.types.Message):
-    await message.answer('Ось варіанти площів')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Площа' LIMIT 1 OFFSET ?",
-            [n.n_areas]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_areas)
-
-
-@dp.message_handler(commands=['museums'])
-@analytics
-async def museums(message: aiogram.types.Message):
-    await message.answer('Ось варіанти музеїв')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Музей' LIMIT 1 OFFSET ?",
-            [n.n_museums]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_museums)
-
-
-@dp.message_handler(commands=['panoramic'])
-@analytics
-async def panoramic(message: aiogram.types.Message):
-    await message.answer('Ось варіанти місць із панорамним видом')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Панорамний вид' LIMIT 1 OFFSET ?",
-            [n.n_panoramic]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_panoramic)
-
-
-@dp.message_handler(commands=['church'])
-@analytics
-async def church(message: aiogram.types.Message):
-    await message.answer( 'Ось варіанти церквів, соборів, монастирів')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Церкви, собори, монастирі' LIMIT 1 OFFSET ?",
-            [n.n_cathedrals]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_cathedrals)
-
-
-@dp.message_handler(commands=['sights'])
-@analytics
-async def sights(message: aiogram.types.Message):
-    await message.answer( "Ось варіанти історичних пам'яток")
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Історична памятка' LIMIT 1 OFFSET ?",
-            [n.n_historical_monument]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_historical_monument)
-
-
-@dp.message_handler(commands=['other'])
-@analytics
-async def other(message: aiogram.types.Message):
-    await message.answer( 'Ось інші локації')
-    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
-        "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost FROM location WHERE type = 'Інше' LIMIT 1 OFFSET ?",
-        [n.n_other]):
-        await bot.send_photo(message.chat.id,
-                             photo,
-                             f"🫧{name}\n"
-                             f"{about}\n"
-                             f"📍Адреса - {address}\n"
-                             f"Станція метро - {metro}\n"
-                             f"Години роботи {time}\n"
-                             f"Вартість - {cost}\n"
-                             f"{fishnet}", reply_markup=keybord.keyboard_inline_other)
+async def loc(message: aiogram.types.Message):
+    try:
+        print(message.text[1:])
+        for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+                "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE region=? and type = ? LIMIT 1 OFFSET ?",
+                (n.region, message.text[1:], n.n_forgotten)):
+            await bot.send_photo(message.chat.id,
+                                 photo,
+                                 f"🫧{name}\n"
+                                 f"{about}\n"
+                                 f"📍Адреса - {address}\n"
+                                 f"{'Станція метро - ' + str(metro) if city == 'Київ' else 'Як дістатися - ' + str(metro)} \n"
+                                 f"Години роботи {time}\n"
+                                 f"Вартість - {cost}\n"
+                                 f"{fishnet}", reply_markup=keybord.loc_keybord[message.text[1:]])
+    except sqlite3.InterfaceError:
+        await message.answer(f"""Вкажіть будь ласка ваш регіон....\n ось доступні регіони - {region_list}""")
 
 
 @dp.message_handler(commands=['Support_the_product'])
@@ -260,19 +68,13 @@ async def other(message: aiogram.types.Message):
 @dp.message_handler(content_types=['text'])
 @analytics
 async def loc(message: aiogram.types.Message):
-    global table
-    a = ['Відпочинь', 'Все буде добре']
-    b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
-    c = ['У тебе все вийде', 'Все буде добре']
-    characters = {
-        'z': 'Вийди отсюда розбійник🧏🧏🧏',
-        'v': 'Пиздуйте нахуй отсюда йобаниє підараси👨‍🦲👨‍🦲👨‍🦲',
-        'vz': 'Пиздець російській федерації⚰️⚰️⚰️',
-        'Я втомився': a[random.randrange(0, len(a))],
-        'Мені сумно': b[random.randrange(0, len(b))],
-        'Я більше не можу': c[random.randrange(0, len(c))],
-        'Я втомилася': a[random.randrange(0, len(a))]
-    }
+    if message.text == 'Червона гілка':
+        await message.answer('Червона гілка', reply_markup=keybord.keyboard_red_branch1)
+    elif message.text == 'Синя гілка':
+        await message.answer('Синя гілка', reply_markup=keybord.keyboard_blue_branch1)
+    elif message.text == 'Зелена гілка':
+        await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
+
     for key in characters:
         if key == message.text:
             await message.answer(
@@ -281,14 +83,33 @@ async def loc(message: aiogram.types.Message):
             await message.answer(
                 characters[key])
 
-    if message.text == 'Червона гілка':
-        await message.answer('Червона гілка', reply_markup=keybord.keyboard_red_branch1)
-    elif message.text == 'Синя гілка':
-        await message.answer('Синя гілка', reply_markup=keybord.keyboard_blue_branch1)
-    elif message.text == 'Зелена гілка':
-        await message.answer('Зелена гілка', reply_markup=keybord.keyboard_green_branch1)
-
-
+    for i in region_list:
+        if i == message.text:
+            n.region = i
+            n.n_cathedrals = 0
+            n.cathedrals_list.clear()
+            n.n_historical_monument = 0
+            n.historical_monument_list.clear()
+            n.n_other = 0
+            n.other_list.clear()
+            n.n_hotels = 0
+            n.hotels_list.clear()
+            n.n_nature = 0
+            n.nature_list.clear()
+            n.n_museums = 0
+            n.museums_list.clear()
+            n.n_areas = 0
+            n.areas_list.clear()
+            n.n_panoramic = 0
+            n.panoramic_list.clear()
+            n.n_forgotten = 0
+            n.forgotten_list.clear()
+            n.n_eit = 0
+            n.eit_list.clear()
+            n.n_active = 0
+            n.active_list.clear()
+    await message.answer(f"""Ви вказали регіон {n.region}""")
+    return n.region
 
 
 if __name__ == '__main__':

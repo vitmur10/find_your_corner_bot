@@ -144,3 +144,16 @@ button_inline_historical_monument = aiogram.types.InlineKeyboardButton(callback_
 keyboard_inline_historical_monument = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_historical_monument)
 button_inline_other = aiogram.types.InlineKeyboardButton(callback_data='other', text='Далі')
 keyboard_inline_other = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_other)
+
+loc_keybord = {'forgotten_place': keyboard_inline_forgotten,
+               'eat': keyboard_inline_cafe,
+               'nature': keyboard_inline_nature,
+               'active': keyboard_inline_active,
+               'hotels': keyboard_inline_hotels,
+               'areas': keyboard_inline_areas,
+               'museums': keyboard_inline_museums ,
+               'panoramic': keyboard_inline_panoramic ,
+               'church': keyboard_inline_cathedrals,
+               'sights': keyboard_inline_historical_monument,
+               'other': keyboard_inline_other
+               }

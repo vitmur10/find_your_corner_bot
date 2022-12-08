@@ -1,8 +1,4 @@
-import random
 import aiogram
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters.state import StatesGroup, State
-import Const
 import keybord
 from Const import bot, dp, cur, con
 
