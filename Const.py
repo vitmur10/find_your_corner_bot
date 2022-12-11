@@ -12,7 +12,7 @@ con = sqlite3.connect("bd")
 cur = con.cursor()
 
 
-region_list = ('Київ', 'Львів')
+region_list = ('Київ', 'Львів', 'Хмельницький')
 
 a = ['Відпочинь', 'Все буде добре']
 b = ['У тебе дуже гарна посмішка', 'Не думай про погане', 'Все буде добре']
@@ -24,5 +24,6 @@ characters = {
     'Я втомився': a[random.randrange(0, len(a))],
     'Мені сумно': b[random.randrange(0, len(b))],
     'Я більше не можу': c[random.randrange(0, len(c))],
-    'Я втомилася': a[random.randrange(0, len(a))]
+    'Я втомилася': a[random.randrange(0, len(a))],
+    'Слава Україні': 'Героям Слава'
 }

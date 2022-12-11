@@ -5,8 +5,8 @@ import n
 from Const import bot, dp, cur, region_list, characters
 from analytics import analytics
 
-# Initialize bot and dispatcher
 
+# Initialize bot and dispatcher
 
 
 @dp.message_handler(commands=['start'])
@@ -30,7 +30,6 @@ async def regio(message: aiogram.types.Message):
 @analytics
 async def loc(message: aiogram.types.Message):
     try:
-        print(message.text[1:])
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE region=? and type = ? LIMIT 1 OFFSET ?",
                 (n.region, message.text[1:], n.n_forgotten)):
@@ -38,8 +37,8 @@ async def loc(message: aiogram.types.Message):
                                  photo,
                                  f"🫧{name}\n"
                                  f"{about}\n"
-                                 f"📍Адреса - {address}\n"
-                                 f"{'Станція метро - ' + str(metro) if city == 'Київ' else 'Як дістатися - ' + str(metro)} \n"
+                                 f"📍Адреса - {address} {city}\n"
+                                 f"{'Станція метро - ' + str(metro) if city == 'Київ' else 'Як дістатися - ' + str(metro)}\n"
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}", reply_markup=keybord.loc_keybord[message.text[1:]])

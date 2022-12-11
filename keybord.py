@@ -1,9 +1,5 @@
 import aiogram
-from main import bot, dp
 import button
-
-
-
 
 # Метро
 
@@ -14,26 +10,25 @@ keyboard_metro = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard_metro.add(button_green_branch).add(button_blue_branch).add(button_red_branch)
 
 keyboard_menu = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu.add(button.button_forgotten).row(button.button_nature).row(button.button_cathedrals).row(button.button_cafe, button.button_next)
+keyboard_menu.add(button.button_forgotten).row(button.button_nature).row(button.button_cathedrals).row(
+    button.button_cafe, button.button_next)
 keyboard_menu_2 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu_2.row(button.button_museums, button.button_panoramic).row(button.button_hotels, button.button_areas).row(button.button_back, button.button_next1)
-privat = aiogram.types.InlineKeyboardButton(text="Приват24", url='https://www.privat24.ua/rd/transfer_to_card/?hash=rd%2Ftransfer_to_card%2F%7B%22from%22%3A%22%22%2C%22to%22%3A%224149499392840482%22%2C%22amt%22%3A%22100%22%2C%22ccy%22%3A%22UAH%22%7D')
+keyboard_menu_2.row(button.button_museums, button.button_panoramic).row(button.button_hotels, button.button_areas).row(
+    button.button_back, button.button_next1)
+privat = aiogram.types.InlineKeyboardButton(text="Приват24",
+                                            url='https://www.privat24.ua/rd/transfer_to_card/?hash=rd%2Ftransfer_to_card%2F%7B%22from%22%3A%22%22%2C%22to%22%3A%224149499392840482%22%2C%22amt%22%3A%22100%22%2C%22ccy%22%3A%22UAH%22%7D')
 mono = aiogram.types.InlineKeyboardButton(text="MONOBANK", url='https://send.monobank.ua/5buFQWbT5t')
 keyboard_menu_3 = aiogram.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard_menu_3.row(button.button_historical_monument, button.button_active).row(button.button_search_metro,button.button_other).row(button.button_donat, button.button_back1)
+keyboard_menu_3.row(button.button_historical_monument, button.button_active).row(button.button_search_metro,
+                                                                                 button.button_other).row(
+    button.button_donat, button.button_back1)
 keyboard_donat = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_donat.add(privat, mono)
 
 discussion = aiogram.types.InlineKeyboardButton(text="Чат", url='https://t.me/+gSVgkrJJQaw2MDgy')
 keyboard_discussion = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(discussion)
 
-
 rd = [button.button_nature, button.button_active]
-
-
-
-
-
 
 # Червона гілка
 akademistechko = aiogram.types.InlineKeyboardButton(text="Академмістечко", callback_data='Akademistechko')
@@ -42,7 +37,8 @@ svyatoshyn = aiogram.types.InlineKeyboardButton(text="Святошин", callbac
 nykvy = aiogram.types.InlineKeyboardButton(text="Нивки", callback_data='Nykvy')
 beresteyska = aiogram.types.InlineKeyboardButton(text="Берестейська", callback_data='Beresteyska')
 shulyavska = aiogram.types.InlineKeyboardButton(text="Шулявська", callback_data='Shulyavska')
-polytechnic_Institute = aiogram.types.InlineKeyboardButton(text="Політехнічний інститут", callback_data='Polytechnic_Institute')
+polytechnic_Institute = aiogram.types.InlineKeyboardButton(text="Політехнічний інститут",
+                                                           callback_data='Polytechnic_Institute')
 station = aiogram.types.InlineKeyboardButton(text="Вокзальна", callback_data='Station')
 university = aiogram.types.InlineKeyboardButton(text="Університет", callback_data='University')
 theatrical = aiogram.types.InlineKeyboardButton(text="Театральна", callback_data='Theatrical')
@@ -63,10 +59,6 @@ keyboard_red_branch2 = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_red_branch2.add(theatrical).row(threshchatyk).row(arsenal).row(dnipro).row(hydropark).row(
     left_bank).row(gift).row(chernihivska).row(lisova).row(button_back_red)
 
-
-
-
-
 # Синя гілка
 heroes_of_the_Dnipro = aiogram.types.InlineKeyboardButton(text="Героїв Дніпра", callback_data='Heroes_of_the_Dnipro')
 minsk = aiogram.types.InlineKeyboardButton(text="Мінська", callback_data='Minsk')
@@ -75,7 +67,8 @@ petrivka = aiogram.types.InlineKeyboardButton(text="Петрівка", callback_
 taras_Shevchenko = aiogram.types.InlineKeyboardButton(text="Тараса Шевченка", callback_data='Taras_Shevchenko')
 contract_area = aiogram.types.InlineKeyboardButton(text="Контрактова площа", callback_data='Contract_area')
 postal_square = aiogram.types.InlineKeyboardButton(text="Поштова площа", callback_data='Postal_square')
-independence_Square = aiogram.types.InlineKeyboardButton(text="Майдан Незалежності", callback_data='Independence_Square')
+independence_Square = aiogram.types.InlineKeyboardButton(text="Майдан Незалежності",
+                                                         callback_data='Independence_Square')
 leo_Tolstoy_Square = aiogram.types.InlineKeyboardButton(text="Площа Льва Толстого", callback_data='Leo_Tolstoy_Square')
 olympic = aiogram.types.InlineKeyboardButton(text="Олімпійська", callback_data='Olympic')
 palace_Ukraine = aiogram.types.InlineKeyboardButton(text='Палац"Україна"', callback_data='Palace_Ukraine')
@@ -92,9 +85,9 @@ keyboard_blue_branch1 = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
 keyboard_blue_branch1.add(heroes_of_the_Dnipro).row(minsk).row(obolon).row(petrivka).row(taras_Shevchenko).row(
     contract_area).row(postal_square).row(independence_Square).row(leo_Tolstoy_Square).row(button_next_blue)
 keyboard_blue_branch2 = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
-keyboard_blue_branch2.add(olympic).row(palace_Ukraine).row(lybidska).row(demyivska).row(holosiivska).row(vasylkivska).row(
+keyboard_blue_branch2.add(olympic).row(palace_Ukraine).row(lybidska).row(demyivska).row(holosiivska).row(
+    vasylkivska).row(
     exhibition_center).row(racetrack).row(teremka).row(button_back_blue)
-
 
 # Зелена гілка
 red_village = aiogram.types.InlineKeyboardButton(text="Червоний хутір", callback_data='Red_village')
@@ -118,9 +111,9 @@ keyboard_green_branch1 = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True
 keyboard_green_branch1.add(red_village).row(boryspilska).row(vyrlitsa).row(kharkivska).row(
     poznyaks).row(slavutych).row(vydubychi).row(button_next_green)
 keyboard_green_branch2 = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True)
-keyboard_green_branch2.add(friendship_of_peoples).row(klovska).row(pecherska).row(palace_of_Sports).row(golden_Gate).row(
+keyboard_green_branch2.add(friendship_of_peoples).row(klovska).row(pecherska).row(palace_of_Sports).row(
+    golden_Gate).row(
     lukyanivska).row(dear_ones).row(raw).row(button_back_green)
-
 
 button_inline_forgotten = aiogram.types.InlineKeyboardButton(callback_data='forgotten', text="Далі")
 keyboard_inline_forgotten = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_forgotten)
@@ -141,7 +134,8 @@ keyboard_inline_museums = aiogram.types.InlineKeyboardMarkup(resize_keyboard=Tru
 button_inline_cathedrals = aiogram.types.InlineKeyboardButton(callback_data='cathedrals', text='Далі')
 keyboard_inline_cathedrals = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_cathedrals)
 button_inline_historical_monument = aiogram.types.InlineKeyboardButton(callback_data='historical_monument', text="Далі")
-keyboard_inline_historical_monument = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_historical_monument)
+keyboard_inline_historical_monument = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(
+    button_inline_historical_monument)
 button_inline_other = aiogram.types.InlineKeyboardButton(callback_data='other', text='Далі')
 keyboard_inline_other = aiogram.types.InlineKeyboardMarkup(resize_keyboard=True).add(button_inline_other)
 
@@ -151,8 +145,8 @@ loc_keybord = {'forgotten_place': keyboard_inline_forgotten,
                'active': keyboard_inline_active,
                'hotels': keyboard_inline_hotels,
                'areas': keyboard_inline_areas,
-               'museums': keyboard_inline_museums ,
-               'panoramic': keyboard_inline_panoramic ,
+               'museums': keyboard_inline_museums,
+               'panoramic': keyboard_inline_panoramic,
                'church': keyboard_inline_cathedrals,
                'sights': keyboard_inline_historical_monument,
                'other': keyboard_inline_other

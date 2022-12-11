@@ -1,6 +1,24 @@
 import aiogram
+from aiogram.utils import callback_data
+
 import keybord
 from Const import bot, dp, cur, con
+
+
+@dp.callback_query_handler()
+async def independence_square(callback_query: aiogram.types.CallbackQuery):
+    await bot.answer_callback_query(callback_query.id)
+    for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
+            "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE metro = ?", callback_data):
+        await bot.send_photo(callback_query.from_user.id,
+                             photo,
+                             f"🫧{name}\n"
+                             f"{about}\n"
+                             f"📍Адреса - {address}\n"
+                             f"Станція метро - {metro}\n"
+                             f"Години роботи {time}\n"
+                             f"Вартість - {cost}\n"
+                             f"{fishnet}")
 
 
 @dp.callback_query_handler(lambda c: c.data == 'Independence_Square')
