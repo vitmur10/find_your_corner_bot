@@ -30,9 +30,10 @@ async def regio(message: aiogram.types.Message):
 @analytics
 async def loc(message: aiogram.types.Message):
     try:
+        print(n.dick_n[message.text[1:]][0])
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE region=? and type = ? LIMIT 1 OFFSET ?",
-                (n.region, message.text[1:], n.n_forgotten)):
+                (n.region, message.text[1:], n.dick_n[message.text[1:]][0])):
             await bot.send_photo(message.chat.id,
                                  photo,
                                  f"🫧{name}\n"
@@ -43,6 +44,7 @@ async def loc(message: aiogram.types.Message):
                                  f"Вартість - {cost}\n"
                                  f"{fishnet}", reply_markup=keybord.loc_keybord[message.text[1:]])
     except sqlite3.InterfaceError:
+        print(n.region)
         await message.answer(f"""Вкажіть будь ласка ваш регіон....\n ось доступні регіони - {region_list}""")
 
 
@@ -85,29 +87,20 @@ async def loc(message: aiogram.types.Message):
     for i in region_list:
         if i == message.text:
             n.region = i
-            n.n_cathedrals = 0
-            n.cathedrals_list.clear()
-            n.n_historical_monument = 0
-            n.historical_monument_list.clear()
-            n.n_other = 0
-            n.other_list.clear()
-            n.n_hotels = 0
-            n.hotels_list.clear()
-            n.n_nature = 0
-            n.nature_list.clear()
-            n.n_museums = 0
-            n.museums_list.clear()
-            n.n_areas = 0
-            n.areas_list.clear()
-            n.n_panoramic = 0
-            n.panoramic_list.clear()
-            n.n_forgotten = 0
-            n.forgotten_list.clear()
-            n.n_eit = 0
-            n.eit_list.clear()
-            n.n_active = 0
-            n.active_list.clear()
-    await message.answer(f"""Ви вказали регіон {n.region}""")
+            n.dick_n = {
+                'active': [0, []],
+                'eat': [0, []],
+                'nature': [0, []],
+                'panoramic': [0, []],
+                'areas': [0, []],
+                'hotels': [0, []],
+                'museums': [0, []],
+                'church': [0, []],
+                'historical_monument': [0, []],
+                'other': [0, []],
+                'forgotten_place': [0, []]
+            }
+            await message.answer(f"""Ви вказали регіон {n.region}""")
     return n.region
 
 

@@ -1,68 +1,32 @@
 import sqlite3
-
 import aiogram
-from aiogram.utils import callback_data
-
 import keybord
-
 from Const import bot, dp, cur, region_list
 
 region = ()
 
-n_active = 0
-active_list = []
-n_eit = 0
-eit_list = []
-
-n_forgotten = 0
-forgotten_list = []
-
-n_nature = 0
-nature_list = []
-
-n_panoramic = 0
-panoramic_list = []
-
-n_areas = 0
-areas_list = []
-
-n_hotels = 0
-hotels_list = []
-
-n_museums = 0
-museums_list = []
-
-n_cathedrals = 0
-cathedrals_list = []
-
-n_historical_monument = 0
-historical_monument_list = []
-
-n_other = 0
-other_list = []
-
 dick_n = {
     'active': [0, []],
-    'eit': [],
-    'forgotten': [],
-    'nature': [],
-    'panoramic': [],
-    'areas': [],
-    'hotels': [],
-    'museums': [],
-    'cathedrals': [],
-    'historical_monument': [],
-    'other': []
+    'eat': [0, []],
+    'nature': [0, []],
+    'panoramic': [0, []],
+    'areas': [0, []],
+    'hotels': [0, []],
+    'museums': [0, []],
+    'church': [0, []],
+    'sights': [0, []],
+    'other': [0, []],
+    'forgotten_place': [0, []]
 }
 
 
-@dp.callback_query_handler(lambda сall: True)
+@dp.callback_query_handler(lambda c: True)
 async def active(callback_query: aiogram.types.CallbackQuery):
-    global n_active, active_list
     await bot.answer_callback_query(callback_query.id)
     try:
         dick_n[callback_query.data][0] += 1
         print(dick_n[callback_query.data][0])
+        print(dick_n[callback_query.data][1])
         for name, city, type, address, fishnet, about, photo, metro, time, cost in cur.execute(
                 "SELECT name, city, type, address, fishnet, about, photo, metro, time, cost  FROM location WHERE region=? and type = ? LIMIT 1 OFFSET ?",
                 (region, callback_query.data, dick_n[callback_query.data][0])):
@@ -75,7 +39,7 @@ async def active(callback_query: aiogram.types.CallbackQuery):
                                  f"{'Станція метро - ' + str(metro) if city == 'Київ' else 'Як дістатися - ' + str(metro)} \n"
                                  f"Години роботи {time}\n"
                                  f"Вартість - {cost}\n"
-                                 f"{fishnet}", reply_markup=keybord.keyboard_inline_active)
+                                 f"{fishnet}", reply_markup=keybord.loc_keybord[callback_query.data])
     except sqlite3.InterfaceError:
         await bot.send_message(callback_query.from_user.id,
                                f"""Вкажіть будь ласка ваш регіон....\n ось доступні регіони - {region_list}\n Скоро регіонів буде більше:)""")
